@@ -1,4 +1,4 @@
-package Shop.Items;
+package GeneLogiciel.Tp2.Shop.Items;
 public class Item implements ItemInterface{
     private String name;
     private Double price;

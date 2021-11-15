@@ -1,4 +1,4 @@
-package Shop.Items;
+package GeneLogiciel.Tp2.Shop.Items;
 public class ItemTest {
 
     public static void testItem(ItemInterface item){

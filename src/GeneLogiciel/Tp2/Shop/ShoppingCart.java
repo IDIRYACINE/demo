@@ -1,8 +1,8 @@
-package Shop;
+package GeneLogiciel.Tp2.Shop;
 import java.util.ArrayList;
 
-import Shop.Items.Item;
-import Shop.Items.ItemTest;
+import GeneLogiciel.Tp2.Shop.Items.Item;
+import GeneLogiciel.Tp2.Shop.Items.ItemTest;
 
 public class ShoppingCart{
 

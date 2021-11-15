@@ -1,5 +1,7 @@
-import Shop.ShoppingCart;
-import Shop.Items.Item;
+package GeneLogiciel.Tp2;
+
+import GeneLogiciel.Tp2.Shop.ShoppingCart;
+import GeneLogiciel.Tp2.Shop.Items.Item;
 
 public class App
 {

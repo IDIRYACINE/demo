@@ -1,4 +1,4 @@
-package Shop.Items;
+package GeneLogiciel.Tp2.Shop.Items;
 
 public interface ItemInterface {
     String getName();
