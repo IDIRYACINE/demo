@@ -13,12 +13,12 @@ public class GestionVehicule{
     }
 
  public static void createAndTestVoiture(){
-    Voiture voiture = new Voiture("bens", 50, 20, 15111998, 10, 35, 1200, 14111990);
+    Voiture voiture = new Voiture("bens", 50, 20, 1998, 10, 35, 1200, 14111990);
     voiture.affiche();
     System.out.println("Voiture price : " + voiture.calculerPrix());
  }
  public static void createAndTestAvion(){
-    Avion avion = new Avion("Helicopter", 200, 100, 22112001, 36, "x63");
+    Avion avion = new Avion("Helicopter", 200, 100, 2000, 36, "x63");
     avion.affiche();
     System.out.println("Avion price : " + avion.calculerPrix());
  }   

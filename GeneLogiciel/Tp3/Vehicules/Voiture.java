@@ -1,5 +1,8 @@
 package GeneLogiciel.Tp3.Vehicules;
 
+import java.sql.Time;
+import java.util.Calendar;
+
 public class Voiture extends Vehicule{
     private double puissance;
     private double kilometrage;
@@ -30,7 +33,8 @@ public class Voiture extends Vehicule{
     }
 
     private double calculerDecots(){
-        double decots = (cylenderie - dateAchat) *0.02;
+        int dateActuelle =  Calendar.getInstance().get(Calendar.YEAR);
+        double decots = (dateActuelle - dateAchat) *0.02;
         decots +=(0.05*(kilometrage/10000));
         if(marque == "Fiat" || marque =="Renault"){
             decots +=0.1;
