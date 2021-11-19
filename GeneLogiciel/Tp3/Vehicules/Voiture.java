@@ -1,6 +1,5 @@
 package GeneLogiciel.Tp3.Vehicules;
 
-import java.sql.Time;
 import java.util.Calendar;
 
 public class Voiture extends Vehicule{
