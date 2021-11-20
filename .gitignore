@@ -5,3 +5,4 @@ src/other.java
 GeneLogiciel/Tp2/Tp2.plantuml
 GeneLogiciel/Tp3/Tp3.plantuml
 /out
+*.plantuml
