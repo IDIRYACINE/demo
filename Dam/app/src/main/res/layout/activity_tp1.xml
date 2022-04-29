@@ -100,14 +100,14 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
 
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address_title"
         tools:ignore="LabelFor" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirm_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/button_confirm"

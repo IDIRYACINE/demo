@@ -2,6 +2,7 @@ README.md
 .vscode/settings.json
 src/other.java
 /bin
+.idea/
 GeneLogiciel/Tp2/Tp2.plantuml
 GeneLogiciel/Tp3/Tp3.plantuml
 /out
