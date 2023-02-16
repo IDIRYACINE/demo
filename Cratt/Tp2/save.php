@@ -50,11 +50,8 @@ $result = $conn->query("INSERT INTO personne VALUES('$name', '$lastNAme','$email
 if (!$result)
     die('erreur SQL :' . $conn->error);
 
-echo 'Vos informations ont été ajoutées.';
 
-$conn->close();
-
-echo $name;
 echo '<h1>Vos informations ont été ajoutées.</h1></body></html>';
 
+$conn->close();
 ?>
