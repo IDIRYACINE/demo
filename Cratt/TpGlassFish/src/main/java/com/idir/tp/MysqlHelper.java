@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class MysqlHelper {
     private Connection connection = null;
@@ -13,14 +18,41 @@ public class MysqlHelper {
 
     private ResultSet resultSet = null;
 
-    private final String tableName = "master";
+    private final static String tableName = "master";
+    private final static String databaseName = "cratt";
+    private final static String glassFishJdbc = "jdbc/cratt";
+
+    private static MysqlHelper instance = null;
+
+    public static MysqlHelper getInstance() {
+        if (instance == null) {
+            instance = new MysqlHelper();
+        }
+        return instance;
+    }
+
+    private MysqlHelper() {
+    }
+
+    public void connectGlassFish() {
+        try {
+            Context initialContext = new InitialContext();
+
+            DataSource dataSource = (DataSource) initialContext.lookup(glassFishJdbc);
+            connection = dataSource.getConnection();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void connect() throws Exception {
         try {
             String username = "root";
             String password = "idir";
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase",
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + databaseName,
                     username,
                     password);
 
@@ -68,6 +100,14 @@ public class MysqlHelper {
                     + " (nom VARCHAR(255), prenom VARCHAR(255), code VARCHAR(255))");
             preparedStatement.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
