@@ -40,6 +40,7 @@ public class MysqlHelper {
 
             DataSource dataSource = (DataSource) initialContext.lookup(glassFishJdbc);
             connection = dataSource.getConnection();
+            createTableIfNotExists();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,6 +78,9 @@ public class MysqlHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println(personnes.size());
+
         return personnes;
     }
 
@@ -97,7 +101,7 @@ public class MysqlHelper {
     private void createTableIfNotExists() {
         try {
             preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS " + tableName
-                    + " (nom VARCHAR(255), prenom VARCHAR(255), code VARCHAR(255))");
+                    + " (nom VARCHAR(255), prenom VARCHAR(255), code VARCHAR(255) PRIMARY KEY)");
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,6 +114,8 @@ public class MysqlHelper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        
     }
 
 }

@@ -60,7 +60,7 @@ public class DatabaseTest {
         ArrayList<Personne> data;
         try {
             data =  MysqlHelper.getInstance().loadAllPersonnes();
-            System.out.println(data.get(0).nom);
+            System.out.println(data.get(0).getNom());
             loaded = true;
         } catch (Exception e) {
             e.printStackTrace();

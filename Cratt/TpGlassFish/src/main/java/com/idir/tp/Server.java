@@ -42,5 +42,8 @@ public class Server extends HttpServlet {
         String code = request.getParameter("code");
 
         mysqlHelper.registerPerssone(name, lastName, code);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/showcase.jsp");
+        rd.forward(request, response);
     }
 }

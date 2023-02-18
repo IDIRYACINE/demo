@@ -9,10 +9,10 @@
 
   <body>
 
-    <form action="Server" method="post">
+    <form action="showcase" method="post">
       Code : <input type="text" name="code" /><br />
-      Name : <input type="text" name="name" /><br />
-      Last Name : <input type="text" name="lastName" /><br />
+      Name : <input type="text" name="nom" /><br />
+      Last Name : <input type="text" name="prenom" /><br />
       <input type="submit" value="Register" />
     </form>
 
