@@ -1,5 +1,5 @@
 README.md
-.vscode/settings.json
+.vscode/
 src/other.java
 /bin
 .idea/
@@ -9,4 +9,5 @@ GeneLogiciel/Tp3/Tp3.plantuml
 *.plantuml
 Cratt/TpGlassFish/target/
 /Cratt/TpGlassFish/target/
+
 
