@@ -84,9 +84,10 @@ public class MysqlHelper {
         return personnes;
     }
 
-    public boolean registerPerssone(String nom, String prenom, String code) {
+    public boolean registerPersonne(String nom, String prenom, String code) {
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO " + tableName + " VALUES(?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO " + tableName + " VALUES(?,?,?)"
+            + " ON DUPLICATE KEY UPDATE nom = VALUES(nom), prenom = VALUES(prenom)");
             preparedStatement.setString(1, nom);
             preparedStatement.setString(2, prenom);
             preparedStatement.setString(3, code);
@@ -97,6 +98,18 @@ public class MysqlHelper {
             return false;
         }
     }
+
+    public void deletePersonne(String code){
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM " + tableName + " WHERE code = ?");
+            preparedStatement.setString(1, code);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void createTableIfNotExists() {
         try {

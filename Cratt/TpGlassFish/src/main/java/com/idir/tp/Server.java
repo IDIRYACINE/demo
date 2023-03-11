@@ -1,6 +1,8 @@
 package com.idir.tp;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -27,10 +29,31 @@ public class Server extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String path = request.getRequestURI();
-        System.out.println("Debug Message : " + path);
-        path = path.substring(6);
-        System.out.println("Debug Message : " + path);
-        RequestDispatcher rd = request.getRequestDispatcher(path + ".jsp");
+
+        Pattern pattern = Pattern.compile(".*?cratt/(.*?)(?=\\?|$)");
+        String targetPage = "index";
+
+        Matcher matcher = pattern.matcher(path);
+        if (matcher.find()) {
+             targetPage = matcher.group(1);
+        }
+
+       
+        String auxilaryParameters = "";
+        pattern = Pattern.compile(targetPage + "(\\?.*)?");
+        matcher = pattern.matcher(path);
+        if (matcher.find()) {
+            auxilaryParameters = matcher.group(1);
+        }
+
+        if (auxilaryParameters == null){
+            auxilaryParameters = "";
+        }
+
+        String target = targetPage + ".jsp" + auxilaryParameters;
+        System.out.println(target);
+
+        RequestDispatcher rd = request.getRequestDispatcher(target);
         rd.forward(request, response);
 
     }
@@ -41,7 +64,7 @@ public class Server extends HttpServlet {
         String lastName = request.getParameter("prenom");
         String code = request.getParameter("code");
 
-        mysqlHelper.registerPerssone(name, lastName, code);
+        mysqlHelper.registerPersonne(name, lastName, code);
 
         RequestDispatcher rd = request.getRequestDispatcher("/showcase.jsp");
         rd.forward(request, response);

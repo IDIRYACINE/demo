@@ -45,7 +45,7 @@ public class DatabaseTest {
         boolean registered;
 
         try {
-            registered = MysqlHelper.getInstance().registerPerssone("test", "test", "test");
+            registered = MysqlHelper.getInstance().registerPersonne("test", "test", "test");
         } catch (Exception e) {
             e.printStackTrace();
             registered = false;

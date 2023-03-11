@@ -10,7 +10,7 @@ def celsius_to_fahrenheit(celsius):
     print(f"{celsius}°C is equal to {fahrenheit}°F.")
 
 def even_numbers():
-    evens = [num for num in range(1, 11) if num % 2 == 0]
+    evens = [num for num in range(1, 30) if num % 2 != 0]
     print(evens)
 
 def factorial(num):
@@ -25,7 +25,7 @@ def find_largest(numbers):
 
 def is_prime(num):
     if num < 2:
-        return False
+        return True
     for i in range(2, int(num/2)+1):
         if num % i == 0:
             return False

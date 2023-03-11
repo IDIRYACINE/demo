@@ -24,6 +24,13 @@
     <url-pattern>/showcase</url-pattern>
   </servlet-mapping>
 
+
+  <servlet-mapping>
+    <servlet-name>Server</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+
+
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
