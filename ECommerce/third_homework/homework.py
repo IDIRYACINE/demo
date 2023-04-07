@@ -23,8 +23,7 @@ print('Dimensions of the dataset:', df_removed.shape)
 print('#----------------------------------------#')
 
 # handle missing data by filling with appropriate method for each variable
-df_filled = df.fillna({'Gender': df['Gender'].mode()[0], 'Age': df['Age'].mean(),
-                       'Height': df['Height'].median(), 'Weight': df['Weight'].median()})
+df_filled = df.fillna({'Gender': df['Gender'].mode()[0], 'Age': df['Age'].mean(),})
 print('\nAfter filling missing data:')
 print('Dimensions of the dataset:', df_filled.shape)
 print('#----------------------------------------#')
@@ -58,12 +57,12 @@ print('\nThe 3 oldest students are:', oldest_students)
 print('#----------------------------------------#')
 
 # 11. Who are the students with the highest grades? (list their names)
-highest_grades = df_unique.nlargest(3, 'Grade')['Name'].tolist()
+highest_grades = df_unique.nlargest(3, 'Grades')['Name'].tolist()
 print('\nThe students with the highest grades are:', highest_grades)
 print('#----------------------------------------#')
 
 # 12. What are the grades of the 10 youngest students?
-youngest_grades = df_unique.nsmallest(10, 'Age')[['Name', 'Grade']]
+youngest_grades = df_unique.nsmallest(10, 'Age')[['Name', 'Grades']]
 print('\nThe grades of the 10 youngest students:')
 print(youngest_grades)
 print('#----------------------------------------#')
@@ -77,7 +76,7 @@ plt.show()
 print('#----------------------------------------#')
 
 # 14. Show in a bar chart the distribution of the students' grades
-grades_counts = df_unique['Grade'].value_counts()
+grades_counts = df_unique['Grades'].value_counts()
 plt.bar(grades_counts.index, grades_counts.values)
 plt.xlabel('Grades')
 plt.ylabel('Frequency')
