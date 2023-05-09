@@ -30,6 +30,27 @@
     <url-pattern>/delete</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+        <servlet-name>MyWebService</servlet-name>
+        <servlet-class>com.idir.tp.WebServiceClass</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyWebService</servlet-name>
+        <url-pattern>/MyWebService</url-pattern>
+    </servlet-mapping>
+
+
+     <servlet>
+        <servlet-name>RechercheMaster</servlet-name>
+        <servlet-class>com.idir.tp.RechercheMaster</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>RechercheMaster</servlet-name>
+        <url-pattern>/RechercheMaster</url-pattern>
+    </servlet-mapping>
+
 
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

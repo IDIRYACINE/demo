@@ -1,0 +1,25 @@
+<html>
+<script>
+    function showUser(str) {
+        console.log("showUser")
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "listepersonne.php?param=" + str, true);
+        xmlhttp.send();
+    }
+
+</script>
+
+<body>
+    <div>
+        <input type="text" onkeyup="showUser(this.value)">
+    </div>
+    <div id="txtHint"><b></b></div>
+    <br>
+</body>
+
+</html>
