@@ -33,10 +33,8 @@ def remove_empty_lines(filename, new_filename):
   with open(filename, "r") as f:
     lines = f.readlines()
 
-  # Remove any empty lines.
   lines = [line for line in lines if line.strip()]
 
-  # Save the modified content to a new file.
   with open(new_filename, "w") as f:
     for line in lines:
       f.write(line)
@@ -56,7 +54,6 @@ def search_for_word(filename, word):
       if word in line:
         line_numbers.append(line_number + 1)
 
-  # Print the line numbers where the word appears.
   if line_numbers:
     print("The word '{}' appears on the following lines:".format(word))
     for line_number in line_numbers:
@@ -67,16 +64,13 @@ def search_for_word(filename, word):
 
 filename = "text.txt"
 
-# Count the number of lines, words, and characters in the text file.
 num_lines, num_words, num_chars = count_lines_words_chars(filename)
 print("The number of lines in the text file is:", num_lines)
-print("The number of words in the text file is:", num_words)
-print("The number of characters in the text file is:", num_chars)
+# print("The number of words in the text file is:", num_words)
+# print("The number of characters in the text file is:", num_chars)
 
-# Remove any empty lines from the text file and save the modified content to a new file.
-new_filename = "text_without_empty_lines.txt"
-remove_empty_lines(filename, new_filename)
+# new_filename = "text_without_empty_lines.txt"
+# remove_empty_lines(filename, new_filename)
 
-# Search for a specific word in the text file and print the line numbers where it appears.
-word = "Python"
-search_for_word(filename, word)
+# word = "Python"
+# search_for_word(filename, word)

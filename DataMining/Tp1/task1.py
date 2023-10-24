@@ -1,3 +1,5 @@
+import re
+
 def count_vowels(string):
   """Counts the number of vowels in a given string.
 
@@ -25,7 +27,7 @@ def capitalize_first_letters(sentence):
     The sentence with the first letter of each word capitalized.
   """
 
-  words = sentence.split()
+  words = re.findall(r'\w+',sentence)
   capitalized_words = []
   for word in words:
     capitalized_words.append(word.capitalize())
@@ -98,29 +100,21 @@ def calculate_sentence_character_frequency(sentence):
   for char in char_frequency:
     print("{}: {}".format(char, char_frequency[char]))
 
-if __name__ == "__main__":
-  # Example usage of the functions:
 
   string = "This is a test string."
 
-  # Count the number of vowels in the string.
   num_vowels = count_vowels(string)
   print("The number of vowels in the string is:", num_vowels)
 
-  # Capitalize the first letter of each word in the sentence.
-  capitalized_sentence = capitalize_first_letters(string)
-  print("The sentence with the first letter of each word capitalized is:", capitalized_sentence)
+  # capitalized_sentence = capitalize_first_letters(string)
+  # print("The sentence with the first letter of each word capitalized is:", capitalized_sentence)
 
-  # Get the frequency of each character in the string.
-  char_frequency = get_character_frequency(string)
-  print("The frequency of each character in the string is:", char_frequency)
+  # char_frequency = get_character_frequency(string)
+  # print("The frequency of each character in the string is:", char_frequency)
 
-  # Replace all occurrences of the character "a" with the character "e".
-  replaced_string = replace_character(string, "a", "e")
-  print("The string with all occurrences of the character 'a' replaced with the character 'e' is:", replaced_string)
+  # replaced_string = replace_character(string, "a", "e")
+  # print("The string with all occurrences of the character 'a' replaced with the character 'e' is:", replaced_string)
 
-  # Calculate the ratio of uppercase letters to lowercase letters in the string.
-  calculate_uppercase_lowercase_ratio(string)
+  # calculate_uppercase_lowercase_ratio(string)
 
-  # Calculate the frequency of each character in the sentence.
-  calculate_sentence_character_frequency(string)
+  # calculate_sentence_character_frequency(string)

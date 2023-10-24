@@ -44,7 +44,6 @@ def extract_all_urls(text):
   urls = url_regex.findall(text)
   return urls
 
-# Example usage of the functions:
 
 text = """
 This is a sample text with email addresses, phone numbers, and URLs.
@@ -62,15 +61,12 @@ Email addresses:
     https://www.google.com
 """
 
-# Extract all email addresses from the text.
 email_addresses = extract_all_email_addresses(text)
 print("Email addresses:", email_addresses)
 
-# Validate a phone number.
-phone_number = "(123) 456-7890"
-is_valid_phone_number = validate_phone_number(phone_number)
-print("Is the phone number {} valid? {}".format(phone_number, is_valid_phone_number))
+# phone_number = "(123) 456-7890"
+# is_valid_phone_number = validate_phone_number(phone_number)
+# print("Is the phone number {} valid? {}".format(phone_number, is_valid_phone_number))
 
-# Extract all URLs from the text.
-urls = extract_all_urls(text)
-print("URLs:", urls)
+# urls = extract_all_urls(text)
+# print("URLs:", urls)

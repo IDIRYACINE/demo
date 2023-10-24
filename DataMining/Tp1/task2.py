@@ -1,3 +1,5 @@
+import re 
+
 def count_words(sentence):
   """Counts the number of words in a sentence.
 
@@ -8,7 +10,7 @@ def count_words(sentence):
     The number of words in the sentence.
   """
 
-  words = sentence.split()
+  words = re.findall(r'\w+',sentence)
   return len(words)
 
 def remove_punctuation(sentence):
@@ -37,7 +39,7 @@ def get_word_frequencies(paragraph):
   """
 
   word_frequencies = {}
-  words = paragraph.split()
+  words = re.findall(r'\w+',text)
   for word in words:
     if word in word_frequencies:
       word_frequencies[word] += 1
@@ -56,25 +58,18 @@ def find_most_common_word(string):
     The most common word in the string, excluding common English stopwords.
   """
 
-  # Create a list of common English stopwords.
   stopwords = ["the", "and", "is", "of", "to", "a", "in", "that", "have", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "when", "what", "where", "who", "into", "time", "up", "out", "about", "again", "further", "then", "once", "here", "when", "where", "who", "why", "how", "all", "any", "both", "each", "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"]
 
-  # Remove all punctuation from the string.
   string = remove_punctuation(string)
 
-  # Split the string into words.
-  words = string.split()
+  words = re.findall(r'\w+',text)
 
-  # Remove all stopwords from the list of words.
   words = [word for word in words if word not in stopwords]
 
-  # Create a dictionary with word frequencies.
   word_frequencies = get_word_frequencies(string)
 
-  # Find the most common word in the dictionary, excluding stopwords.
   most_common_word = max(word_frequencies.keys(), key=(lambda word: word_frequencies[word]))
 
-  # Return the most common word.
   return most_common_word
 
 def is_palindrome(word):
@@ -115,5 +110,43 @@ def swap_first_and_last_words(sentence):
     The sentence with the first and last words swapped.
   """
 
-  words = sentence.split()
+  words = re.findall(r'\w+',sentence)
   first_word = words[0]
+  last_word = words[len(words) - 1]
+
+  reversed = []
+
+  words.removeAt(0)
+  words.removeAt(len(words) - 1)
+
+  reversed.append(last_word)
+
+  for word in words :
+    reversed.append(word)
+
+  reversed.append(first_word) 
+
+  return "".join(reversed) 
+
+
+
+text = input("Enter text ")
+
+wordsCount = count_words(text)
+
+print("Words Count : {}".format(wordsCount))
+
+# removedPunctationText = remove_punctuation(text)
+# print('Before {} , After {}'.format(text,removedPunctationText))
+
+# mostCommonWord = find_most_common_word(text)
+
+# print ('Most common word {}'.format(mostCommonWord))
+
+# isPalindrome = is_palindrome(text)
+
+# print("Text {} Is palindrom {}".format(text,isPalindrome))
+
+# swappedText = swap_first_and_last_words(text)
+
+# print ("Before {} After {}".format(text,swappedText))
