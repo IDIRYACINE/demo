@@ -23,4 +23,4 @@ def extract_text_from_pdf(file_path, method=extraction_method_pyPdf):
         print('Using pdfplumber:', text)
 
 
-extract_text_from_pdf('pdfData.pdf', extraction_method_pyPdf)
+extract_text_from_pdf('./pdfData.pdf', extraction_method_pyPdf)

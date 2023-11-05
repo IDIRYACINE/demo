@@ -5,7 +5,7 @@ from googleapiclient.errors import HttpError
 import json
 
 def search_video(video_id):
-    api_key = "ApiKEy"
+    api_key = "APiKey"
     youtube = build('youtube', 'v3', developerKey=api_key)
 
     try:
@@ -29,11 +29,11 @@ def search_video(video_id):
             author = item['snippet']['topLevelComment']['snippet']['authorDisplayName']
             comments.append({'author': author, 'comment': comment})
 
-        with open ("{}.json".format(video_id), 'w') as outfile:
+        with open ("./{}.json".format(video_id), 'w') as outfile:
             json.dump({'title': video_title, 'description': video_description, 'comments': comments}, outfile, indent=4)
 
     except HttpError as e:
         print('An error occurred: %s' % e)
         return None
 
-search_video('9bZkp7q19f0')
+search_video('rczDieh3_ng')
