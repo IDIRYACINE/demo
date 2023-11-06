@@ -5,7 +5,7 @@ from googleapiclient.errors import HttpError
 import json
 
 def search_video(video_id):
-    api_key = "APiKey"
+    api_key = "ApiKEy"
     youtube = build('youtube', 'v3', developerKey=api_key)
 
     try:

@@ -15,14 +15,13 @@ def data_mine_movies(raw) :
         year = descriptions[0].text
         duration = descriptions[1].text
         adult_rating = descriptions[2].text if len(descriptions) > 2  else  'N/A'
-        ratings = movie.select_one('div.cli-ratings-container > span.ipc-rating-star')
-
+        ratings = movie.select_one('div.cli-ratings-container > span.ipc-rating-star').text.replace('\u00a0', '')
         movies.append({
             'title': title,
             'year': year,
             'duration': duration,
             'adult_rating': adult_rating,
-            'rating': ratings.text
+            'rating': ratings
         })
 
     with open('movies.json', 'w') as outfile:
@@ -47,4 +46,4 @@ def scrape_top_250_movies() :
 
 
 # scrape_top_250_movies()
-data_mine_movies(open('raw.json').read())
+# data_mine_movies(open('raw.json').read())
