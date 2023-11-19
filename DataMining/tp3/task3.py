@@ -18,3 +18,11 @@ def retain_paragraph_newlines(text):
     pattern = r"\n+"
     clean_text = re.sub(pattern, "\n", text)
     return clean_text
+
+
+text = """The dog is laying on the bed      . I hope its confortable.'something' <another>
+gdg"""
+
+print(remove_excess_whitespace(text))
+print(preserve_formatting_preformatted_blocks(text))
+print(retain_paragraph_newlines(text))

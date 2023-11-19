@@ -15,3 +15,9 @@ def remove_urls_and_links(text):
     pattern = r"https?://\S+"
     processed_text = re.sub(pattern, "", processed_text)
     return processed_text
+
+
+text = """<p>Here is a link to <a href='https://www.google.com'>Google</a></p>"""
+
+print(remove_html_tags(text))
+print(remove_urls_and_links(text))

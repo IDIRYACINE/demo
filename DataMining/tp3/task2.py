@@ -21,3 +21,9 @@ def remove_special_chars_except_code_blocks(text):
     clean_text = re.sub(pattern, "", text)
     return clean_text
 
+
+text = "The dog is laying on the bed. I hope its confortable.'something' <another>"
+
+print(remove_punctuation_except_quotes(text))
+print(remove_punctuation_keep_abbreviations(text))
+print(remove_special_chars_except_code_blocks(text))
