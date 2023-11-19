@@ -1,41 +1,62 @@
 import nltk
+from nltk import word_tokenize, pos_tag
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
-def context_aware_stemming_lemmatization(text):
-    porter_stemmer = PorterStemmer()
-    wordnet_lemmatizer = WordNetLemmatizer()
-    tokens = word_tokenize(text)
-    processed_tokens = []
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 
-    for token in tokens:
-        if token in technical_jargon_set:
-            processed_tokens.append(porter_stemmer.stem(token))
+def contextual_stem_lemmatize(text):
+    words = word_tokenize(text)
+    pos_tags = pos_tag(words)
+
+    stemmer = PorterStemmer()
+    lemmatizer = WordNetLemmatizer()
+
+    processed_words = []
+
+    for word, pos_tag in pos_tags:
+        if pos_tag.startswith('N'):  # Nouns
+            processed_words.append(lemmatizer.lemmatize(word, pos='n'))
+        elif pos_tag.startswith('V'):  # Verbs
+            processed_words.append(lemmatizer.lemmatize(word, pos='v'))
+        elif pos_tag.startswith('R'):  # Adverbs
+            processed_words.append(stemmer.stem(word))
         else:
-            processed_tokens.append(wordnet_lemmatizer.lemmatize(token))
+            processed_words.append(word)
 
-    processed_text = " ".join(processed_tokens)
-    return processed_text
+    return ' '.join(processed_words)
 
-import nltk
-from nltk.stem import LancasterStemmer, SnowballStemmer, WordNetLemmatizer
+# Example usage
+text = "Running through the fields, runners ran races. Running is a healthy activity."
+processed_text = contextual_stem_lemmatize(text)
+print(processed_text)
 
-def multilingual_stemming_lemmatization(text):
-    english_stemmer = PorterStemmer()
-    french_stemmer = LancasterStemmer()
-    arabic_stemmer = SnowballStemmer('arabic')
-    wordnet_lemmatizer = WordNetLemmatizer()
-    tokens = word_tokenize(text)
-    processed_tokens = []
+from polyglot.text import Text
+from polyglot.downloader import downloader
 
-    for token in tokens:
-        if token in english_words_set:
-            processed_tokens.append(english_stemmer.stem(token))
-        elif token in french_words_set:
-            processed_tokens.append(french_stemmer.stem(token))
-        elif token in arabic_words_set:
-            processed_tokens.append(arabic_stemmer.stem(token))
-        else:
-            processed_tokens.append(wordnet_lemmatizer.lemmatize(token))
+# Install necessary resources for Polyglot (if not installed)
+downloader.download("embeddings2.en")
+downloader.download("embeddings2.fr")
+downloader.download("embeddings2.ar")
 
-    processed_text = " ".join(processed_tokens)
-    return processed_text
+def multilingual_stem_lemmatize(text):
+    # Create a Polyglot Text object
+    polyglot_text = Text(text)
+
+    # Process each word in the text and apply stemming and lemmatization
+    processed_words = []
+    for word in polyglot_text.words:
+        if word.language.code == 'en':
+            processed_words.append(PorterStemmer().stem(word))
+        elif word.language.code == 'fr':
+            processed_words.append(word.morphemes[0])  # Assuming the first morpheme is the root
+        elif word.language.code == 'ar':
+            processed_words.append(word.root)
+
+    return ' '.join(processed_words)
+
+# Example usage
+multilingual_text = "Hello, comment ça va? مرحبًا بك في Polyglot."
+processed_multilingual_text = multilingual_stem_lemmatize(multilingual_text)
+print(processed_multilingual_text)

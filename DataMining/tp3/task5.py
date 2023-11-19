@@ -1,6 +1,6 @@
 import nltk
 from nltk.corpus import stopwords
-from nltk.pos_tag import pos_tag
+from nltk import word_tokenize, pos_tag
 
 def remove_stopwords_context_aware(text):
     stopwords_set = set(stopwords.words('english'))

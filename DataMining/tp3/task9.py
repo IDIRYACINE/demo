@@ -1,53 +1,69 @@
+from spellchecker import SpellChecker
 import nltk
-from nltk.corpus import wordnet
-from nltk.metrics.distance import Jaro_Winkler
+from nltk import word_tokenize, pos_tag
 
-def context_aware_spell_checking(text):
-    tokens = word_tokenize(text)
-    corrected_tokens = []
+from polyglot.text import Text
+from polyglot.downloader import downloader
 
-    for token in tokens:
-        if token not in wordnet.words():
-            suggestions = []
-            for word in wordnet.words():
-                distance = Jaro_Winkler.distance(token, word)
-                if distance > 0.8:
-                    suggestions.append((word, distance))
 
-            if suggestions:
-                most_similar_word, distance = max(suggestions, key=lambda x: x[1])
-                corrected_tokens.append(most_similar_word)
-            else:
-                corrected_tokens.append(token)
-        else:
-            corrected_tokens.append(token)
+nltk.download('punkt')
 
-    corrected_text = " ".join(corrected_tokens)
+def context_aware_spell_check(text):
+    words = word_tokenize(text)
+    pos_tags = pos_tag(words)
+
+    spell = SpellChecker()
+
+    misspelled_words = spell.unknown(words)
+
+    corrections = {}
+    for word in misspelled_words:
+        suggestions = spell.candidates(word)
+        # Consider only suggestions that have the same POS tag
+        suggestions = [s for s in suggestions if pos_tag([s])[0][1] == pos_tag([word])[0][1]]
+
+        if suggestions:
+            best_suggestion = max(suggestions, key=spell.word_probability)
+            corrections[word] = best_suggestion
+
+    # Apply corrections to the original text
+    corrected_text = ' '.join(corrections.get(word, word) for word in words)
     return corrected_text
 
-import nltk
-from nltk.corpus import wordnet
+# Example usage
+text = "The dog is laying on the bed. I hope its confortable."
+corrected_text = context_aware_spell_check(text)
+print(corrected_text)
 
-def multilingual_spell_checking(text):
-    languages = ["english", "french", "spanish"]
-    corrected_tokens = []
+# Install necessary resources for Polyglot (if not installed)
+downloader.download("embeddings2.en")
+downloader.download("embeddings2.fr")
+downloader.download("embeddings2.ar")
 
-    for token in text.split():
-        language_detected = False
+def multilingual_spell_check(text, custom_words=None):
+    polyglot_text = Text(text)
 
-        for language in languages:
-            if token in wordnet.words(lang=language):
-                corrected_tokens.append(token)
-                language_detected = True
-                break
+    # Combine custom words with default spellchecker vocabulary
+    if custom_words:
+        spell = SpellChecker(custom_words=custom_words)
+    else:
+        spell = SpellChecker()
 
-        if not language_detected:
-            # Check custom words and domain-specific vocabulary
-            if token in custom_words_set or token in domain_specific_vocabulary_set:
-                corrected_tokens.append(token)
-            else:
-                # If no match found, consider it a misspelling
-                corrected_tokens.append("[MISSPELLED: " + token + "]")
+    misspelled_words = [word for word in polyglot_text.words if word not in spell.word_frequency]
 
-    corrected_text = " ".join(corrected_tokens)
+    corrections = {}
+    for word in misspelled_words:
+        suggestions = spell.candidates(word)
+        if suggestions:
+            best_suggestion = max(suggestions, key=spell.word_probability)
+            corrections[word] = best_suggestion
+
+    # Apply corrections to the original text
+    corrected_text = ' '.join(corrections.get(word, word) for word in polyglot_text.words)
     return corrected_text
+
+# Example usage with custom words
+custom_words = {'confortable', 'Polyglot'}
+multilingual_text = "Hello, comment ça va? مرحبًا بك في Polyglot."
+corrected_multilingual_text = multilingual_spell_check(multilingual_text, custom_words)
+print(corrected_multilingual_text)
