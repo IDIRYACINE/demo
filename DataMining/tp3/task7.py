@@ -1,4 +1,3 @@
-import nltk
 from nltk import word_tokenize, pos_tag
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk.stem import PorterStemmer

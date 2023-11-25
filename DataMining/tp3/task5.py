@@ -3,6 +3,7 @@ from nltk.corpus import stopwords
 from nltk import word_tokenize, pos_tag
 
 nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
 
 def remove_stopwords_context_aware(text):
     stopwords_set = set(stopwords.words('english'))

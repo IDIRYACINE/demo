@@ -22,3 +22,4 @@ def title_case(text, exceptions):
 text_sample = "Python is an interpreted, high-level, general-purpose programming language python. " 
 
 print(case_insensitive_search(text_sample, "Python"))
+print(title_case(text_sample,["an"]))

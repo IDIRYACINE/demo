@@ -23,6 +23,10 @@ def retain_paragraph_newlines(text):
 text = """The dog is laying on the bed      . I hope its confortable.'something' <another>
 gdg"""
 
-print(remove_excess_whitespace(text))
-print(preserve_formatting_preformatted_blocks(text))
-print(retain_paragraph_newlines(text))
+text_two = """The dog is laying on the bed   ``` gg
+gg     cxs```   . I hope its confortable.'something' <another>
+gdg"""
+
+# print(remove_excess_whitespace(text))
+print(preserve_formatting_preformatted_blocks(text_two))
+print(retain_paragraph_newlines(text_two))

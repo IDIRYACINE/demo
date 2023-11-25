@@ -6,6 +6,10 @@ from polyglot.text import Text
 from polyglot.downloader import downloader
 
 
+# Install necessary resources for Polyglot (if not installed)
+downloader.download("embeddings2.en")
+downloader.download("embeddings2.fr")
+downloader.download("embeddings2.ar")
 nltk.download('punkt')
 
 def context_aware_spell_check(text):
@@ -35,14 +39,10 @@ def context_aware_spell_check(text):
     return corrected_text
 
 # Example usage
-text = "The dog is laying on the bed. I hope its confortable."
+text = "The dog is laying on the bed. I hope its comfortable."
 corrected_text = context_aware_spell_check(text)
 print(corrected_text)
 
-# Install necessary resources for Polyglot (if not installed)
-# downloader.download("embeddings2.en")
-# downloader.download("embeddings2.fr")
-# downloader.download("embeddings2.ar")
 
 def multilingual_spell_check(text, custom_words=None):
     polyglot_text = Text(text)

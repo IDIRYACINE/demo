@@ -1,0 +1,14 @@
+create virtual enviroment for python (to not mess with the system ) :
+ -python3 -m venv venv
+
+activate virtual enviroment :
+  - source venv/bin/activate
+  - deactivate
+
+
+dependencies : 
+ pip install six 
+ pip install numpy  
+ pip install pyicu
+ pip install pycld2
+ pip install morfessor
