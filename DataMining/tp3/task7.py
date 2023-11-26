@@ -3,11 +3,16 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 from nltk.stem import PorterStemmer
 from polyglot.text import Text
 from polyglot.downloader import downloader
+import nltk
 
 
-# nltk.download('punkt')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+downloader.download("embeddings2.en")
+downloader.download("embeddings2.fr")
+downloader.download("embeddings2.ar")
+
 
 def contextual_stem_lemmatize(text):
     words = word_tokenize(text)
@@ -30,15 +35,10 @@ def contextual_stem_lemmatize(text):
 
     return ' '.join(processed_words)
 
-# Example usage
 text = "Running through the fields, runners ran races. Running is a healthy activity."
 processed_text = contextual_stem_lemmatize(text)
 print(processed_text)
 
-# Install necessary resources for Polyglot (if not installed)
-# downloader.download("embeddings2.en")
-# downloader.download("embeddings2.fr")
-# downloader.download("embeddings2.ar")
 
 def multilingual_stem_lemmatize(text):
     # Create a Polyglot Text object
@@ -56,7 +56,6 @@ def multilingual_stem_lemmatize(text):
 
     return ' '.join(processed_words)
 
-# Example usage
 multilingual_text = "Hello, comment ça va? مرحبًا بك في Polyglot."
 processed_multilingual_text = multilingual_stem_lemmatize(multilingual_text)
 print(processed_multilingual_text)

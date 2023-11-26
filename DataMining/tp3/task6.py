@@ -1,13 +1,16 @@
 import re
 
-def remove_html_tags(html_text):
-    pattern = r"<.*?>"
-    clean_text = re.sub(pattern, "", html_text)
-    clean_text = re.sub(r"&nbsp;", " ", clean_text)
-    return clean_text
+from bs4 import BeautifulSoup
+from html import unescape
 
+def remove_html_tags_and_entities(html_text):
+    soup = BeautifulSoup(html_text, 'html.parser')
 
-import re
+    text_without_tags = soup.get_text(separator=' ', strip=True)
+
+    text_without_entities = unescape(text_without_tags)
+
+    return text_without_entities
 
 def remove_urls_and_links(text):
     pattern = r"<a href='(.*?)'>(.*?)</a>"
@@ -17,7 +20,7 @@ def remove_urls_and_links(text):
     return processed_text
 
 
-text = """<p>Here is a link to <a href='https://www.google.com'>Google</a></p>"""
+text =  "You can learn more about it from <a href='https://example.com'>this link</a>. Visit https://anotherlink.org for more details."
 
-print(remove_html_tags(text))
+print(remove_html_tags_and_entities(text))
 print(remove_urls_and_links(text))
