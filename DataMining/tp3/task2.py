@@ -1,6 +1,6 @@
 import re
 import nltk
-nltk.download('punkt')
+# nltk.download('punkt')
 
 quotes_pattern = r'[\'\"](.*?)[\'\"]'
 
@@ -21,7 +21,7 @@ def replace_quotes(text,pattern,replacement="{}"):
 
 def remove_punctuation_except_quotes(text) : 
     quotes = extract_quotes(text)
-    temp_text = replace_quotes(text,quotes_pattern,replacement="'{}'")
+    temp_text = replace_quotes(text,quotes_pattern,replacement="\'{}\'")
     cleaned_text = re.sub(r"[,.?!;']", "", temp_text)
 
     return cleaned_text.format(*quotes)
@@ -29,22 +29,12 @@ def remove_punctuation_except_quotes(text) :
 
 
 def process_text_with_abbreviations(text):
-    # Tokenize the text into words
-    words = nltk.word_tokenize(text)
+    abbs_pattern = r"\b\w{1,6}[.,]"
+    quotes = re.findall(abbs_pattern, text)   
+    temp_text = replace_quotes(text,abbs_pattern,replacement="'{}'")
+    cleaned_text = re.sub(r"[,.?!;']", "", temp_text)
 
-    # Identify and replace abbreviations with placeholders
-    abbreviations = [word for word in words if re.match(r'\b(?:[A-Z]\.)+', word)]
-    abbreviations_map = {abbr: f'replace_{i}' for i, abbr in enumerate(abbreviations)}
-    text_with_placeholders = ' '.join([abbreviations_map.get(word, word) for word in words])
-
-    # Remove punctuation from the text (excluding placeholders)
-    text_without_punctuation = re.sub(r'[^A-Za-z0-9\s]|_', '', text_with_placeholders)
-
-    # Re-insert preserved abbreviations
-    for abbr, replacement in abbreviations_map.items():
-        text_without_punctuation = text_without_punctuation.replace(replacement, abbr)
-
-    return text_without_punctuation.strip()
+    return cleaned_text.format(*quotes)
 
 def remove_special_chars_except_code_blocks(text) : 
     blocs_pattern = r'\`\`\`(.*?)\`\`\`'

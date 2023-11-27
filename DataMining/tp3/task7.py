@@ -6,12 +6,12 @@ from polyglot.downloader import downloader
 import nltk
 
 
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
-downloader.download("embeddings2.en")
-downloader.download("embeddings2.fr")
-downloader.download("embeddings2.ar")
+# nltk.download('punkt')
+# nltk.download('averaged_perceptron_tagger')
+# nltk.download('wordnet')
+# downloader.download("embeddings2.en")
+# downloader.download("embeddings2.fr")
+# downloader.download("embeddings2.ar")
 
 
 def contextual_stem_lemmatize(text):

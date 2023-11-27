@@ -3,6 +3,11 @@ import langid
 import json
 
 
+
+def preprocess_csv_dataset(file_path):
+    df = pd.read_csv(file_path, encoding='utf-8')
+    
+
 def describe_csv_dataset(file_path):
     df = pd.read_csv(file_path, encoding='utf-8')
 
