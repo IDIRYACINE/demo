@@ -2,11 +2,10 @@ from nltk import sent_tokenize, word_tokenize
 import langdetect
 
 # Sample text
-text = """
-Natural language processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence 
-concerned with the interactions between computers and human language. In particular, how to program computers 
-to process and analyze large amounts of natural language data.
-"""
+
+text = ''
+with open('data.txt', 'r') as f:
+    text = f.read()
 
 # Task 1: Data Summary and Statistics
 # Language detection
