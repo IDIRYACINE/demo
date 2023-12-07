@@ -23,7 +23,6 @@ def create_word_cloud(words, title):
     wordcloud = WordCloud(width=800, height=400, max_words=len(words), background_color='white').generate_from_frequencies(words)
     plt.figure(figsize=(10, 5))
     plt.imshow(wordcloud, interpolation='bilinear')
-    plt.axis('off')
     plt.title(title)
     plt.show()
 

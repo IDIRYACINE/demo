@@ -2,7 +2,6 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def tfidf_vectorize(corpus):
-    """Creates a TF-IDF representation of a text corpus."""
 
     # Create a TfidfVectorizer object
     vectorizer = TfidfVectorizer()
