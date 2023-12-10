@@ -24,7 +24,7 @@ def describe_csv_dataset(file_path):
 
     print(f"Number of reviews: {num_reviews}")
     print(f"Number of labels: {num_labels}")
-    print(f"Languages: {', '.join(languages)}")
+    # print(f"Languages: {', '.join(languages)}")
     print(f"Maximum review length: {max_review_length} characters")
     print(f"Minimum review length: {min_review_length} characters")
     print(f"Average review length: {average_review_length} characters")
