@@ -1,6 +1,7 @@
-Number of reviews: 50000
-Number of labels: 2
-Languages: id, it, no, en
-Maximum review length: 13704 characters
-Minimum review length: 7 characters
-Average review length: 1309.36772 characters
+{
+"num_reviews": 50000, "num_labels": 2, 
+"languages": ["br", "pt", "af", "mt", "fr", "en", "da", "no", "eo", "nl", "id", "es", "pl", "it", "sw", "la", "ms", "de", "lt"],
+"max_review_length": 9273,
+"min_review_length": 5,
+"average_review_length": 837
+}

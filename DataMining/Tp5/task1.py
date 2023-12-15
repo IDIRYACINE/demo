@@ -13,14 +13,14 @@ def describe_csv_dataset(file_path):
 
     num_reviews = len(df)
     num_labels = df['sentiment'].nunique()
-    max_review_length = df['review'].apply(len).max()
-    min_review_length = df['review'].apply(len).min()
-    average_review_length = df['review'].apply(len).mean()
-    languages = set()
+    max_review_length = int(df['review'].apply(len).max())
+    min_review_length = int(df['review'].apply(len).min())
+    average_review_length = int(df['review'].apply(len).mean())
+    # languages = set()
 
-    for review in df['review']:
-        lang, confidence = langid.classify(review)
-        languages.add(lang)
+    # for review in df['review']:
+    #     lang, confidence = langid.classify(review)
+    #     languages.add(lang)
 
     print(f"Number of reviews: {num_reviews}")
     print(f"Number of labels: {num_labels}")
@@ -32,7 +32,7 @@ def describe_csv_dataset(file_path):
     results = {
         'num_reviews': num_reviews,
         'num_labels': num_labels,
-        'languages': list(languages),
+        # 'languages': list(languages),
         'max_review_length': max_review_length,
         'min_review_length': min_review_length,
         'average_review_length': average_review_length
@@ -45,5 +45,5 @@ def describe_csv_dataset(file_path):
     
 
 # Example usage:
-file_path = 'source.csv'  # Replace with the actual path to your CSV file
+file_path = 'output/preprocessed.csv'  # Replace with the actual path to your CSV file
 describe_csv_dataset(file_path)

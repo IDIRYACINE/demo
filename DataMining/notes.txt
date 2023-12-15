@@ -5,7 +5,6 @@ activate virtual enviroment :
   - source venv/bin/activate
   - deactivate
 
-
 dependencies : 
  pip install six 
  pip install numpy  
