@@ -10,3 +10,6 @@ GeneLogiciel/Tp3/Tp3.plantuml
 target
 
 
+DataMining/Tp5/output/preprocessed.csv
+DataMining/Tp5/output/test_data.csv
+DataMining/Tp5/output/training_data.csv

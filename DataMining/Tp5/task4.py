@@ -5,12 +5,12 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 def perform_stemming(tokens):
     stemmer = PorterStemmer()
     stemmed_tokens = [stemmer.stem(token) for token in tokens]
-    return stemmed_tokens
+    return ''.join(stemmed_tokens)
 
 def perform_lemmatization(tokens):
     lemmatizer = WordNetLemmatizer()
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    lemmatized_tokens
+    return ''.join(lemmatized_tokens)
 
 # Example usage:
 # Read the CSV file with preprocessed data
@@ -18,24 +18,31 @@ file_path = 'output/preprocessed.csv'
 df = pd.read_csv(file_path, encoding='utf-8')
 
 # Choose either stemming or lemmatization based on your preference
-# Uncomment the line that corresponds to your choice
 
-# Perform stemming
-# df['stemmed_review'] = df['review'].apply(perform_stemming)
+# # Perform stemming
+# df['stemmed_review'] = df['tokens'].apply(perform_stemming)
 
-# Perform lemmatization
-df['lemmatized_tokens'] = df['tokens'].apply(perform_lemmatization)
+# # Perform lemmatization
+# df['lemmatized_review'] = df['tokens'].apply(perform_lemmatization)
+
+# output_file_path = 'output/preprocessed.csv'
+# df.to_csv(output_file_path, index=False, encoding='utf-8')
 
 # Feature extraction methods
+data = df['lemmatized_review']
+
+
+
+# print("Number of reviews: {}".format(len(data)))
 
 # Bag of Words
-vectorizer_bow = CountVectorizer()
-X_bow = vectorizer_bow.fit_transform(df['lemmatized_tokens'])
+vectorizer_bow = CountVectorizer(lowercase=False)
+X_bow = vectorizer_bow.fit_transform(data)
 df_bow = pd.DataFrame(X_bow.toarray(), columns=vectorizer_bow.get_feature_names_out())
 
 # TF-IDF
-vectorizer_tfidf = TfidfVectorizer()
-X_tfidf = vectorizer_tfidf.fit_transform(df['lemmatized_tokens'])
+vectorizer_tfidf = TfidfVectorizer(lowercase=False)
+X_tfidf = vectorizer_tfidf.fit_transform(data)
 df_tfidf = pd.DataFrame(X_tfidf.toarray(), columns=vectorizer_tfidf.get_feature_names_out())
 
 # Display the first few rows of the DataFrames (Bag of Words and TF-IDF)

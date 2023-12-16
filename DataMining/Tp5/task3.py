@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 # Function to present label distribution
 def present_label_distribution(df):
-    label_distribution = df['labels'].value_counts()
+    label_distribution = df['sentiment'].value_counts()
     print("Labels Distribution:")
     print(label_distribution)
 
@@ -24,7 +24,7 @@ def explore_ngrams(data, ngram_range=(2, 3), top_n=10):
     ngrams = vectorizer.fit_transform(data)
 
     ngram_counts = ngrams.sum(axis=0)
-    ngram_features = vectorizer.get_feature_names()
+    ngram_features = vectorizer.get_feature_names_out()
     ngram_counts = ngram_counts.tolist()[0]
 
     ngram_df = pd.DataFrame({'Ngram': ngram_features, 'Count': ngram_counts})
